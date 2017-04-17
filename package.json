@@ -11,14 +11,13 @@
   "license": "MIT",
   "dependencies": {
     "aws-sdk": "^2.27.0",
-    "lodash.throttle": "^4.1.1",
+    "fs-promise": "^2.0.2",
     "log-reject": "^1.0.0",
-    "minimist": "^1.2.0",
     "request": "^2.81.0",
     "request-promise-native": "^1.0.3",
     "rmfr": "^1.0.2",
     "s3": "^4.4.0",
-    "tile-web": "^1.0.0",
+    "tile-web": "^1.1.0",
     "zipfolder": "^1.0.4"
   },
   "devDependencies": {}

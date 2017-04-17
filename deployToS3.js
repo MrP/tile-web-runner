@@ -1,7 +1,9 @@
 'use strict';
-var s3 = require('s3');
-var AWS = require('aws-sdk');
-var rp = require('request-promise-native');
+
+const s3 = require('s3');
+const AWS = require('aws-sdk');
+const rp = require('request-promise-native');
+const path = require('path');
 
 function getAwsS3Client() {
     if (process.env.AWS_ACCESS_KEY && process.env.AWS_SECRET_ACCESS_KEY) {
@@ -30,10 +32,10 @@ function getAwsS3Client() {
     }
 }
 
-module.exports.deployToS3 = (folder, pathOutPage, onProgress) => {
-    getAwsS3Client()
+module.exports.deployToS3 = (folder, pathOutPage) => {
+    return getAwsS3Client()
     .then((awsS3Client) => {
-        var client = s3.createClient({
+        const client = s3.createClient({
             s3Client: awsS3Client,
             maxAsyncS3: 20,     // this is the default
             s3RetryCount: 3,    // this is the default
@@ -41,8 +43,8 @@ module.exports.deployToS3 = (folder, pathOutPage, onProgress) => {
             multipartUploadThreshold: 20971520, // this is the default (20 MB)
             multipartUploadSize: 15728640, // this is the default (15 MB)
         });
-        var params = {
-            localDir: folder + '/' + pathOutPage,
+        const params = {
+            localDir: path.join(folder, pathOutPage),
             deleteRemoved: true,
             s3Params: {
                 Bucket: process.env.S3_BUCKET_NAME,
@@ -50,12 +52,24 @@ module.exports.deployToS3 = (folder, pathOutPage, onProgress) => {
             },
         };
         return new Promise(function (resolve, reject) {
-            var uploader = client.uploadDir(params);
+            const uploader = client.uploadDir(params);
             uploader.on('error', reject);
-            uploader.on('progress', function() {
-                onProgress && onProgress(uploader.progressAmount, uploader.progressTotal);
-            });
             uploader.on('end', resolve);
+        })
+        .then(() => {
+            const zipFile = pathOutPage.replace(/\./g, '') + '.zip';
+            const params = {
+                localFile: path.join(folder, zipFile),
+                s3Params: {
+                    Bucket: process.env.S3_BUCKET_NAME,
+                    Key: zipFile
+                },
+            };
+            return new Promise(function (resolve, reject) {
+                const uploader = client.uploadFile(params);
+                uploader.on('error', reject);
+                uploader.on('end', resolve);
+            });
         });
     });
 };
