@@ -7,8 +7,8 @@
     "start": "node ./index.js"
   },
   "author": "Victor Rodriguez Gil <victor@wsdev.tech>",
-  "repository": "mrp/tile-web-runner",
-  "license": "UNLICENSED",
+  "repository": "git@github.com:MrP/tile-web-runner.git",
+  "license": "MIT",
   "dependencies": {
     "aws-sdk": "^2.27.0",
     "lodash.throttle": "^4.1.1",

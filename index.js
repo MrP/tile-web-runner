@@ -31,7 +31,7 @@ function mapAndDeploy(urlIn) {
     .catch(logReject);
 }
 
-var urlIn = argv._[0] || 'http://www.otterprojectsltd.com/index.html';
+var urlIn = argv._[0] || 'http://www.example.com/index.html';
 console.log('urlIn', urlIn);
 
 mapAndDeploy(urlIn);
