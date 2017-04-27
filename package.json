@@ -10,7 +10,7 @@
   "repository": "git@github.com:MrP/tile-web-runner.git",
   "license": "MIT",
   "dependencies": {
-    "aws-sdk": "^2.27.0",
+    "aws-sdk": "^2.46.0",
     "fs-promise": "^2.0.2",
     "log-reject": "^1.0.0",
     "request": "^2.81.0",
