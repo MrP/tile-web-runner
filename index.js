@@ -6,7 +6,7 @@ var zip = require('zipfolder');
 var rmfr = require('rmfr');
 var path = require('path');
 var logReject = require('log-reject');
-var fsp = require('fs-promise');
+var fsp = require('fs-extra');
 
 function mapAndDeploy(urlIn) {
     var pathOut = '/tmp/tileweb/';

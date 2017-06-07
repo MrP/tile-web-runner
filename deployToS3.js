@@ -4,7 +4,7 @@ const s3 = require('s3');
 const AWS = require('aws-sdk');
 const rp = require('request-promise-native');
 const path = require('path');
-const fsp = require('fs-promise');
+const fsp = require('fs-extra');
 
 function getAwsS3Client() {
     if (process.env.AWS_ACCESS_KEY && process.env.AWS_SECRET_ACCESS_KEY) {

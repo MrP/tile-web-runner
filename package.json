@@ -4,21 +4,25 @@
   "description": "Tile web runner",
   "main": "index.js",
   "scripts": {
-    "start": "node ./index.js"
+    "start": "node ./index.js",
+    "test": "jasmine"
   },
   "author": "Victor Rodriguez Gil <victor@wsdev.tech>",
   "repository": "git@github.com:MrP/tile-web-runner.git",
   "license": "MIT",
   "dependencies": {
-    "aws-sdk": "^2.48.0",
-    "fs-promise": "^2.0.2",
+    "aws-sdk": "^2.64.0",
+    "fs-extra": "^3.0.1",
     "log-reject": "^1.0.0",
     "request": "^2.81.0",
-    "request-promise-native": "^1.0.3",
-    "rmfr": "^1.0.2",
+    "request-promise-native": "^1.0.4",
+    "rmfr": "^1.0.3",
     "s3": "^4.4.0",
-    "tile-web": "^2.1.1",
+    "tile-web": "^2.1.2",
     "zipfolder": "^1.0.4"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "jasmine": "^2.6.0",
+    "node-image-compare-promise": "^0.1.3"
+  }
 }
