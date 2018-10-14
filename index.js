@@ -3,7 +3,7 @@
 var tileWeb = require('tile-web').tileWeb;
 var deployToS3 = require('./deployToS3.js').deployToS3;
 var zip = require('zipfolder');
-var rmfr = require('rmfr');
+var rimraf = require('rimraf-then');
 var path = require('path');
 var logReject = require('log-reject');
 var fsp = require('fs-extra');
@@ -14,7 +14,7 @@ function mapAndDeploy(urlIn) {
         tileSize: undefined,
         tmpDir: undefined
     };
-    return rmfr(pathOut)
+    return rimraf(pathOut)
     .then(() => tileWeb(urlIn, pathOut, options))
     .then((pathOutPage) => {
         return zip.zipFolder({

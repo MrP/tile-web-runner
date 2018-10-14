@@ -1,6 +1,6 @@
 /*global jasmine, expect*/
 var execSync = require('child_process').execSync;
-var rmfr = require('rmfr');
+var rimraf = require('rimraf-then');
 var expectImagesToBeTheSame = require('./expectImagesToBeTheSame.helper.js').expectImagesToBeTheSame;
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 600000;
@@ -18,7 +18,7 @@ describe("tile-web-runer", () => {
             .catch(done.fail);
     });
     afterEach(function (done) {
-        rmfr("/tmp/tileweb/")
+        rimraf("/tmp/tileweb/")
             .then(done)
             .catch(done.fail);
     });
